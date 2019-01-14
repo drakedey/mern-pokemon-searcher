@@ -1,5 +1,6 @@
 const express =  require('express');
 const mongoose =  require('mongoose');
+const pokemonRoutes = require('./routes/pokemon');
 
 const app = express();
 
@@ -12,5 +13,7 @@ app.use(function (req, res, next) {
   res.getHeader('Access-Control-Allow-Origin');
   next();
 });
+
+app.use('/api/pokemon', pokemonRoutes);
 
 app.listen(5000, () => console.log('server started at port 5000'));
