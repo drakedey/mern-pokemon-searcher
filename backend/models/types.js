@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const axios = require('axios');
 
 const typeSchema = new mongoose.Schema({
   name: {
@@ -36,22 +35,9 @@ const typeSchema = new mongoose.Schema({
   }
 });
 
-function fetchTypesByUrl(urlArray) {
-  const majorPromise = [];
-  urlArray.forEach(url => {
-    majorPromise.push(new Promise((res, rej) => {
-      axios.get(url)
-      .then(response => res(response.data))
-      .catch(err => rej(err))
-    }));
-  });
-  return majorPromise;
-}
-
 const Type = mongoose.model('Type', typeSchema);
 
 module.exports = {
   Type,
-  typeSchema,
-  fetchTypesByUrl
+  typeSchema
 }
